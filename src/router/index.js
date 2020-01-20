@@ -18,5 +18,16 @@ const router = new VueRouter({
 	  
   ]
 })
+//挂在路由导航守卫
+router.beforeEach((to,from,next)=>{
+	//to: Route: 即将要进入的目标 路由对象
+
+//from: Route: 当前导航正要离开的路由
+//next是一个函数,表示放行,next() 放行 next('/login')强制跳转
+if (to.path === '/login') return next()
+const tokenStr = window.sessionStorage.getItem('token')
+if (!tokenStr) return next('/login')
+next()
+})
 
 export default router
