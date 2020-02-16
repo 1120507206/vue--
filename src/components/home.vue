@@ -13,7 +13,8 @@
 	  <!-- 页面主图区域 -->
 	  <el-container>
 		  <!-- 侧边栏 -->
-	    <el-aside width="200px">
+	    <el-aside :width="issubItem ? '64px' :'240px'">
+			<div class="toggle-button" @click="togglebuten">|||</div>
 		
 		<el-menu
 		      default-active="2"
@@ -22,7 +23,11 @@
 		      background-color="#545c64"
 		      text-color="#fff"
 		      active-text-color="#ffd04b"
-			  unique-opened> <!-- 控制菜单只能出现一次 -->
+			  unique-opened
+			  :collapse = issubItem
+			  router
+			 :collapse-transition = "false"
+			  > <!-- 控制菜单只能出现一次 -->
 			   <!-- 一级菜单 -->
 			   
 		      <el-submenu  :index="item.id +''" v-for="item in menulist" :key="item.id">
@@ -34,7 +39,7 @@
 				
 				
 		       <!-- 这是二级菜单 -->
-		     <el-menu-item :index="subItem.id+''" v-for="subItem in item.children" :key="subItem.id">
+		     <el-menu-item :index="'/' + subItem.path+''" v-for="subItem in item.children" :key="subItem.id">
 			 
 			 <template slot="title">
 			   <i class="el-icon-menu"></i>
@@ -50,7 +55,9 @@
 		
 		</el-aside>
 		<!-- 右侧内容主体 -->
-	    <el-main>Main</el-main>
+	    <el-main>
+		<router-view></router-view>
+		</el-main>
 	  </el-container>
 	</el-container>
 	
@@ -69,7 +76,8 @@
 					'145':'iconfont icon-baobiao',
 					
 					
-				}
+				},
+				issubItem:false
 				
 				
 			}
@@ -91,6 +99,10 @@
 		console.log(res.data)
 		
 		
+		},
+		togglebuten(){
+			this.issubItem = !this.issubItem
+			
 		}
 	}
 	};
@@ -148,5 +160,14 @@
 	  
 	.iconfont{
 		margin-right: 10px;
+	}
+	.toggle-button{
+		background-color:#545C64 ;
+		font-size: 10px;
+		text-align: center;
+		line-height: 20px;
+		color: white;
+		letter-spacing: 0.2em;
+		cursor: pointer;
 	}
 </style>
