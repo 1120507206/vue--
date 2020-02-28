@@ -2,12 +2,22 @@ html,body,#app{
 	height: 100%;
 	margin: 0;
 	padding: 0;
+	
 }
-.input-user{
-	margin-top: -20px;
-	margin-bottom: -20px;
-}
+
 .el-table{
-	margin-top: -200px;
+	
 	padding: 0;
 }
+.el-pagination{
+	margin-top: 30px;
+	height: 40px;
+}
+.el-main{
+		line-height: 50px;
+		text-align: left;
+	}
+.el-main[data-v-957c9522]{
+		line-height: 60px;
+		text-align: left;
+	}
